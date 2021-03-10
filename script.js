@@ -10,7 +10,7 @@ class Passenger{
         this.dateReturning = dateReturning;
         this.numberOfBags = numberOfBags;
         this.search = search;
-        this.duration = duration;
+        // this.duration = duration;
     }
 }
 
@@ -27,27 +27,26 @@ function addToList(){
     let dateReturning = document.getElementById("dateReturning").value;
     let numberOfBags = document.getElementById("numberOfBags").value; 
 
-    birthdayNumbers = birthday.split("");
+    let birthdayNumbers = birthday.split("");
     console.log(birthdayNumbers);
     let canDrink = false;
-    let age = year - birthdayNumbers[0];
+    let age = birthday - birthdayNumbers[0];
     if(age += 21){
         canDrink = true;
     }
 
     let extraCost = 0;
     extraCost += numberOfBags * 20;
-    extraCost += 
 
-    leavingNumbers = dateLeaving.split(".");
-    returningNumbers = dateReturning.split(".");
-
-    let dayGone = returningNumbers[2] - leavingNumbers[2];
-    console.log(dayGone);
+    leavingNumbers = new Date(dateLeaving);
+    returningNumbers = new Date(dateReturning);
+    console.log(leavingNumbers)
+    let dayGone = leavingNumbers.getTime() - returningNumbers.getTime();
+    dayGone = Math.abs(dayGone/ 1000 / 100 / 60 / 24)
 
     birthday = new Date(birthday);
 
-    let age = Date.now
+    // let age = Date.now
 
     if(firstName != "" && lastName != "" && birthday != "" && departureCity != "" && arrivalCity != "" && dateLeaving != "" && dateReturning != "" && search != ""){
         let passenger = new Passenger(firstName, lastName, birthday, departureCity, arrivalCity, dateLeaving, dateReturning, numberOfBags, search, idCount);
@@ -78,6 +77,17 @@ function print(){
 
 function search(){
     let searchID = document.getElementById("search").value
-    console.log(passengerList[searchedID])
-    document.getElementById
+    for(let i = 0; i < passengerList.length; i++){
+        if (passengerList[i].firstName == searchID){
+            let firstName = document.getElementById("outfirstName").value = passengerList[i].firstName;
+            let lastName = document.getElementById("outlastName").value = passengerList[i].lastName;
+            let birthday = document.getElementById("outDoB").value = passengerList[i].birthday;
+            let departureCity = document.getElementById("outdeparting").value = passengerList[i].departureCity;
+            let arrivalCity = document.getElementById("outarriving").value = passengerList[i].arrivalCity;
+            let dateLeaving = document.getElementById("outleaveDate").value = passengerList[i].dateLeaving;
+            let dateReturning = document.getElementById("outreturnDate").value = passengerList[i].dateReturning;
+            let numberOfBags = document.getElementById("numberOfBags").value = passengerList[i].numberOfBags; 
+        } 
+    }
+    document.getElementById("updateList()")
 }
